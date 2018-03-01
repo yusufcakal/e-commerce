@@ -4,6 +4,7 @@ import com.yusufcakal.ecommerce.mail.SmtpMailSender;
 import com.yusufcakal.ecommerce.model.Mail;
 import com.yusufcakal.ecommerce.model.User;
 import com.yusufcakal.ecommerce.repository.UserRepository;
+import com.yusufcakal.ecommerce.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class UserController {
         }
 
         if (userFlag){
-            user.setToken(generateToken());
+            user.setToken(TokenUtil.generateToken());
             userRepository.save(user);
             try {
                 smtpMailSender.send(user);
@@ -91,12 +92,6 @@ public class UserController {
         }
 
         return new ResponseEntity<>(token, HttpStatus.OK);
-    }
-
-    private int generateToken(){
-        Random random = new Random();
-        int token = random.nextInt(999999999)+1;
-        return token;
     }
 
 }
