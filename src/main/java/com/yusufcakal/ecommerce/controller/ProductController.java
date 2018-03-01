@@ -41,6 +41,18 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public ResponseEntity<List<Product>> updateCategory(@RequestBody Product product, @PathVariable long id) throws EntityNotFoundException {
+        Product product1 = productRepository.findOne(id);
+        product1.setName(product.getName());
+        product1.setPrice(product.getPrice());
+        product1.setStock(product.getStock());
+        productRepository.save(product1);
+        System.out.println(product1);
+        List<Product> productList = (List<Product>) productRepository.findAll();
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id) throws EntityNotFoundException {
         productRepository.delete((long) id);
