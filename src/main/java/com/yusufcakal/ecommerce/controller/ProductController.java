@@ -1,6 +1,5 @@
 package com.yusufcakal.ecommerce.controller;
 
-import com.yusufcakal.ecommerce.model.Category;
 import com.yusufcakal.ecommerce.model.Product;
 import com.yusufcakal.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
