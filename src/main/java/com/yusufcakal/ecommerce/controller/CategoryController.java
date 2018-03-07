@@ -1,10 +1,7 @@
 package com.yusufcakal.ecommerce.controller;
 
-import com.yusufcakal.ecommerce.mail.SmtpMailSender;
 import com.yusufcakal.ecommerce.model.Category;
-import com.yusufcakal.ecommerce.model.User;
 import com.yusufcakal.ecommerce.repository.CategoryRepository;
-import com.yusufcakal.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
