@@ -1,7 +1,6 @@
 package com.yusufcakal.ecommerce.controller;
 
 import com.yusufcakal.ecommerce.mail.SmtpMailSender;
-import com.yusufcakal.ecommerce.model.Mail;
 import com.yusufcakal.ecommerce.model.User;
 import com.yusufcakal.ecommerce.repository.UserRepository;
 import com.yusufcakal.ecommerce.utils.TokenUtil;
@@ -9,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/user")

@@ -1,7 +1,9 @@
 package com.yusufcakal.ecommerce.controller;
 
 import com.yusufcakal.ecommerce.model.Product;
+import com.yusufcakal.ecommerce.model.User;
 import com.yusufcakal.ecommerce.repository.ProductRepository;
+import com.yusufcakal.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,16 +12,25 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public ResponseEntity<List<Product>> getProducts() throws EntityNotFoundException {
-        List<Product> productList = (List<Product>) productRepository.findAll();
-        return new ResponseEntity<>(productList, HttpStatus.OK);
+    @Autowired
+    UserRepository userRepository;
+
+    @RequestMapping(method = RequestMethod.POST, value = "/get")
+    public ResponseEntity<List<Product>> getProducts(@RequestParam(value = "token") int token){
+        List<User> userList = (List<User>) userRepository.findAll();
+        for (User user : userList) {
+            if (user.getToken() == token){
+                List<Product> productList = (List<Product>) productRepository.findAll();
+                return new ResponseEntity<>(productList, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
