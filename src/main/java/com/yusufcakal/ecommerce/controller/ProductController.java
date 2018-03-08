@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -21,25 +22,19 @@ public class ProductController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/get")
-    public ResponseEntity<List<Product>> getProducts(@RequestParam(value = "token") int token){
-        List<User> userList = (List<User>) userRepository.findAll();
-        for (User user : userList) {
-            if (user.getToken() == token){
-                List<Product> productList = (List<Product>) productRepository.findAll();
-                return new ResponseEntity<>(productList, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    @RequestMapping(method = RequestMethod.GET, value = "")
+    public ResponseEntity<List<Product>> getProducts(){
+        List<Product> productList = (List<Product>) productRepository.findAll();
+        return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<HttpStatus> getCategory(@PathVariable int id) throws EntityNotFoundException {
+    public ResponseEntity<?> getCategory(@PathVariable int id) throws EntityNotFoundException {
         Product product = productRepository.findOne((long) id);
         if (product.equals(null)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else{
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(product, HttpStatus.OK);
         }
     }
 
