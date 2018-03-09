@@ -1,11 +1,12 @@
 package com.yusufcakal.ecommerce.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "category", schema = "public")
-public class Category {
+public class Category{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

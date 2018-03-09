@@ -10,13 +10,13 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
 
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @RequestMapping(method = RequestMethod.GET, value = "")
     public ResponseEntity<List<Category>> getCategories() throws EntityNotFoundException {
         List<Category> categoryList = (List<Category>) categoryRepository.findAll();
         return new ResponseEntity<>(categoryList, HttpStatus.OK);

@@ -1,16 +1,13 @@
 package com.yusufcakal.ecommerce.controller;
 
 import com.yusufcakal.ecommerce.model.Product;
-import com.yusufcakal.ecommerce.model.User;
 import com.yusufcakal.ecommerce.repository.ProductRepository;
-import com.yusufcakal.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -18,9 +15,6 @@ public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
-
-    @Autowired
-    UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.GET, value = "")
     public ResponseEntity<List<Product>> getProducts(){

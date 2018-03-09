@@ -1,10 +1,13 @@
 package com.yusufcakal.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "product", schema = "public")
-public class Product {
+public class Product{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +26,10 @@ public class Product {
     @Column(name = "stock")
     private int stock;
 
-    @Column(name = "category_id")
-    private int category_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Product(String name, String image, double price, int stock) {
         this.name = name;
@@ -33,12 +38,12 @@ public class Product {
         this.stock = stock;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Product() {}
@@ -91,7 +96,7 @@ public class Product {
                 ", image='" + image + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
-                ", category_id=" + category_id +
+                ", category=" + category +
                 '}';
     }
 }
