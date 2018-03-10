@@ -7,11 +7,17 @@ import com.yusufcakal.ecommerce.model.Product;
 import com.yusufcakal.ecommerce.repository.ImageRepository;
 import com.yusufcakal.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.activation.FileTypeMap;
 import javax.persistence.EntityNotFoundException;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,7 +43,6 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
-
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<?> getProduct(@PathVariable int id) throws EntityNotFoundException {
         Product product = productRepository.findOne((long) id);
@@ -46,6 +51,18 @@ public class ProductController {
         }else{
             return new ResponseEntity<>(product, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/images/{id}")
+    public ResponseEntity<?> getImagesOfProduct(@PathVariable int id) throws EntityNotFoundException, IOException {
+        List<Image> imageList = (List<Image>) imageRepository.findAll();
+        List<Image> imagesOfProductList = new ArrayList<>();
+        for (int i=0; i<imageList.size(); i++){
+            if (imageList.get(i).getProduct_id() == id){
+                imagesOfProductList.add(imageList.get(i));
+            }
+        }
+        return new ResponseEntity<>(imagesOfProductList, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/add")

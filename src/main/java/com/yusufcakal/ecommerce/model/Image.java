@@ -1,7 +1,5 @@
 package com.yusufcakal.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,8 +17,7 @@ public class Image{
     @Column(name = "path")
     private String path;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @Column(name = "product_id")
     private int product_id;
 
     public Image(String name, String path, int product_id) {
