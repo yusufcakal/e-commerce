@@ -23,7 +23,7 @@ public class UserController {
     SmtpMailSender smtpMailSender;
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
-    public ResponseEntity<User> register(@RequestBody User user) throws EntityNotFoundException {
+    public ResponseEntity<?> register(@RequestBody User user) throws EntityNotFoundException {
         boolean userFlag = false;
         List<User> userList = (List<User>) userRepository.findAll();
 
@@ -50,7 +50,7 @@ public class UserController {
             }
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }else{
-            return new ResponseEntity<>(user, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
     }

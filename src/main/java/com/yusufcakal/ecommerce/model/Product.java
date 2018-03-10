@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "product", schema = "public")
@@ -17,9 +18,6 @@ public class Product{
     @Column(name = "name")
     private String name;
 
-    @Column(name = "image")
-    private String image;
-
     @Column(name = "price")
     private double price;
 
@@ -31,9 +29,8 @@ public class Product{
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product(String name, String image, double price, int stock) {
+    public Product(String name, double price, int stock) {
         this.name = name;
-        this.image = image;
         this.price = price;
         this.stock = stock;
     }
@@ -64,14 +61,6 @@ public class Product{
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -93,7 +82,6 @@ public class Product{
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
                 ", category=" + category +
