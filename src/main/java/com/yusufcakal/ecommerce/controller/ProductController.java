@@ -53,6 +53,18 @@ public class ProductController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/category/{category_id}")
+    public ResponseEntity<?> getProductsOfCategory(@PathVariable int category_id) throws EntityNotFoundException {
+        List<Product> productList = (List<Product>) productRepository.findAll();
+        List<Product> productsOfCategoryList = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getCategory().getId() == category_id){
+                productsOfCategoryList.add(product);
+            }
+        }
+        return new ResponseEntity<>(productsOfCategoryList, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/images/{id}")
     public ResponseEntity<?> getImagesOfProduct(@PathVariable int id) throws EntityNotFoundException, IOException {
         List<Image> imageList = (List<Image>) imageRepository.findAll();
