@@ -11,8 +11,8 @@ It's open source project providers fundamental product and user management.
 
 ## Table of Contents
 
-- [Database Tables](https://github.com/Hexworks/zircon#database-tables)
-- [Services](https://github.com/Hexworks/zircon#services)
+- [Database Tables](https://github.com/yusufcakal/e-commerce#database-tables)
+- [Services](https://github.com/yusufcakal/e-commerce#services)
 
 ### Database Tables
 
