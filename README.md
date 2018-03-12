@@ -56,7 +56,7 @@ Tables (Coming Soon..)
     ```
     - ###### response
     ```
-    200 (Http Ok), if token value -1 user unauthorized.
+    200 (Http Ok), if token value -1 is user unauthorized.
     ```
     
 
