@@ -26,7 +26,7 @@ Tables (Coming Soon..)
 
 
 #### User
- - ##### User Register
+ - ##### Register
      ```
     url: ../user/register | POST 
     ```
@@ -41,6 +41,22 @@ Tables (Coming Soon..)
     - ###### response
     ```
     if there is no user 201 (Http Created) other case already user 409 (Http Conflict)
+    ```
+    
+ - ##### Login
+     ```
+    url: ../user/login | POST 
+    ```
+   - ###### request
+   ```json
+    {
+        "email": "info@johndoe.com",
+        "password": "123456"
+    }
+    ```
+    - ###### response
+    ```
+    200 (Http Ok), if token value -1 user unauthorized.
     ```
     
 
