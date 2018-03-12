@@ -25,5 +25,23 @@ Tables (Coming Soon..)
 - [Category](https://github.com/yusufcakal/e-commerce#category) 
 
 
-### User
+#### User
+ - ##### User Register
+     ```
+    url: ../user/register | POST 
+    ```
+   - ###### request
+   ```json
+    {
+        "name": "John Doe",
+        "email": "info@johndoe.com",
+        "password": "123456"
+    }
+    ```
+    - ###### response
+    ```
+    if there is no user 201 (Http Created) other case already user 409 (Http Conflict)
+    ```
+    
+
 
