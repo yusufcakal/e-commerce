@@ -20,12 +20,10 @@ Tables (Coming Soon..)
 
 ### Services
 
-
 - [User](https://github.com/yusufcakal/e-commerce#user)
 - [Product](https://github.com/yusufcakal/e-commerce#product) 
 - [Category](https://github.com/yusufcakal/e-commerce#category) 
-- [Images](https://github.com/yusufcakal/e-commerce#images) 
 
 
 ### User
-asdasda
+
