@@ -24,7 +24,11 @@ It's open source project providers fundamental product and user management.
   + [register](https://github.com/yusufcakal/e-commerce#register)
   + [login](https://github.com/yusufcakal/e-commerce#login)
   + [verify](https://github.com/yusufcakal/e-commerce#verify)
-- [Product](https://github.com/yusufcakal/e-commerce#product) 
+- [Product](https://github.com/yusufcakal/e-commerce#product)
+  + [add](https://github.com/yusufcakal/e-commerce#add)
+  + [edit](https://github.com/yusufcakal/e-commerce#edit)
+  + [delete](https://github.com/yusufcakal/e-commerce#delete)
+  + [get](https://github.com/yusufcakal/e-commerce#get)
 - [Category](https://github.com/yusufcakal/e-commerce#category) 
 
 
