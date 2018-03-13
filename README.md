@@ -21,6 +21,7 @@ Tables (Coming Soon..)
 ### Services
 
 - [User](https://github.com/yusufcakal/e-commerce#user)
+  + [register](https://github.com/yusufcakal/e-commerce#register)
 - [Product](https://github.com/yusufcakal/e-commerce#product) 
 - [Category](https://github.com/yusufcakal/e-commerce#category) 
 
