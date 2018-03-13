@@ -29,7 +29,10 @@ It's open source project providers fundamental product and user management.
   + [edit](https://github.com/yusufcakal/e-commerce#edit)
   + [delete](https://github.com/yusufcakal/e-commerce#delete)
   + [get](https://github.com/yusufcakal/e-commerce#get)
-- [Category](https://github.com/yusufcakal/e-commerce#category) 
+- [Category](https://github.com/yusufcakal/e-commerce#category)
+  + [get](https://github.com/yusufcakal/e-commerce#category)
+  + [add](https://github.com/yusufcakal/e-commerce#category)
+  + [delete](https://github.com/yusufcakal/e-commerce#category)
 
 
 #### User
@@ -149,4 +152,41 @@ It's open source project providers fundamental product and user management.
     200 (Http Ok) is images of product.
     ```
 
-
+#### Category
+ - ##### get
+     ```
+    url: ../categories/ | GET 
+    ```
+   - ###### request
+    native get request. /categories/{categoryId} -> related category response.
+    - ###### response
+    ```
+    200 (Http Ok) and category list.
+    ```
+    
+ - ##### Add
+     ```
+    url: ../categories/add | POST 
+    ```
+   - ###### request
+   ```json
+    {
+      "name": "Category"
+    }
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) and category list.
+    ```
+ - ##### Delete
+     ```
+    url: ../categories/delete/{categoryId} | DELETE 
+    ```
+   - ###### request
+   ```
+   delete request with path variable is categoryId
+    ```
+    - ###### response
+    ```
+    200 (Http Ok)
+    ```
