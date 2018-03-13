@@ -74,4 +74,75 @@ Tables (Coming Soon..)
     200 (Http Ok) will other requests sending user token.
     ```
 
+#### Product
+ - ##### Add
+     ```
+    url: ../products/add | POST 
+    ```
+   - ###### request
+   ```json
+    {
+      "name": "New Product",
+      "price": 60.00,
+      "stock": 30,
+      "category": {
+                  "id": 1
+             }
+    }
+    MultipartFile[] product images.
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) and productlist
+    ```
+    
+ - ##### Edit
+     ```
+    url: ../products/{productId} | PUT 
+    ```
+    - ###### request
+    ```
+    Product Object
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) and productlist
+    ```
+ - ##### Delete
+     ```
+    url: ../products/{productId} | DELETE 
+    ```
+   - ###### request
+   ```
+   Product id send on url path variable.
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) is product edited.
+    ```
+ - ##### Get
+     ```
+    url: ../products/{productId} | GET
+    ```
+    - ###### request
+    ```
+    Get request also if there is no productId all products. ../category/{category_id} products of category.
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) product or productlist
+    ```
+ - ##### Images
+     ```
+    url: ../products//images/{productId} | GET 
+    ```
+   - ###### request
+   ```
+   Product id send on url path variable.
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) is images of product.
+    ```
+
 
