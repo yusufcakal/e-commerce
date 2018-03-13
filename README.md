@@ -194,4 +194,6 @@ It's open source project providers fundamental product and user management.
 
 ### Thanks
 
-thx
+* [Spring](https://spring.io/)
+* [Postgresql](https://www.postgresql.org/)
+* [Microsoft Visio - UML Diagrams](https://products.office.com/en/visio/flowchart-software?tab=tabs-1)
