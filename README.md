@@ -13,6 +13,7 @@ It's open source project providers fundamental product and user management.
 
 - [Database Tables](https://github.com/yusufcakal/e-commerce#database-tables)
 - [Services](https://github.com/yusufcakal/e-commerce#services)
+- [License](https://github.com/yusufcakal/e-commerce#license)
 - [Thanks](https://github.com/yusufcakal/e-commerce#thanks)
 
 ### Database Tables
@@ -192,8 +193,15 @@ It's open source project providers fundamental product and user management.
     200 (Http Ok)
     ```
 
+### License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 ### Thanks
 
 * [Spring](https://spring.io/)
 * [Postgresql](https://www.postgresql.org/)
 * [Microsoft Visio - UML Diagrams](https://products.office.com/en/visio/flowchart-software?tab=tabs-1)
+
+
+
