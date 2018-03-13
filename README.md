@@ -58,6 +58,17 @@ Tables (Coming Soon..)
     ```
     200 (Http Ok), if token value -1 is user unauthorized.
     ```
-    
+ - ##### Verify
+     ```
+    url: ../user/verify/{token} | GET 
+    ```
+   - ###### request
+   ```
+   User verify with email.
+    ```
+    - ###### response
+    ```
+    200 (Http Ok) will other requests sending user token.
+    ```
 
 
