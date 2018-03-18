@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
