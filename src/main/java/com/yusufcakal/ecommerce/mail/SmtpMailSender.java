@@ -30,7 +30,7 @@ public class SmtpMailSender {
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
-                "Merhaba "+ user.getName() +" kayıt işlemini <a href=\"http://localhost:8080/user/verify/" + user.getToken() + "\"> buradan </a> doğrulayabilrisin.\n" +
+                "Merhaba "+ user.getName() +" kayıt işlemini <a href=\"http://localhost:3029/user/verify/" + user.getToken() + "\"> buradan </a> doğrulayabilrisin.\n" +
                 "\n" +
                 "</body>\n" +
                 "</html>";

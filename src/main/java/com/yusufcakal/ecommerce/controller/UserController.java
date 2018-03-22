@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/verify/{token}")
-    public ResponseEntity<HttpStatus> verify(@PathVariable int token) throws EntityNotFoundException {
+    public ResponseEntity<String> verify(@PathVariable int token) throws EntityNotFoundException {
 
         List<User> userList = (List<User>) userRepository.findAll();
 
@@ -69,7 +69,7 @@ public class UserController {
             }
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Kayıt Başarılı", HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
@@ -40,9 +41,10 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteCategory(@PathVariable int id) throws EntityNotFoundException {
+    public ResponseEntity<List<Category>> deleteCategory(@PathVariable int id) throws EntityNotFoundException {
         categoryRepository.delete((long) id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<Category> categoryList = (List<Category>) categoryRepository.findAll();
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
 }
