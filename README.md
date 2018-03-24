@@ -95,9 +95,7 @@ It's open source project providers fundamental product and user management.
       "name": "New Product",
       "price": 60.00,
       "stock": 30,
-      "category": {
-                  "id": 1
-             }
+      "category_id": 1
     }
     MultipartFile[] product images.
     ```
