@@ -109,6 +109,8 @@ public class ProductController {
         System.out.println(strPojo);
         productRepository.save(product);
 
+        int size = files.length;
+
         for (MultipartFile file : files) {
 
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
