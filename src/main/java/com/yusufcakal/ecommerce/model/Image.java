@@ -1,5 +1,8 @@
 package com.yusufcakal.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,16 +20,32 @@ public class Image{
     @Column(name = "path")
     private String path;
 
-    @Column(name = "product_id")
-    private int product_id;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    public Image(String name, String path, int product_id) {
+    public Image(String name, String path) {
         this.name = name;
         this.path = path;
-        this.product_id = product_id;
     }
 
-    public Image() {}
+    public Image(String name, String path, Product product) {
+        this.name = name;
+        this.path = path;
+        this.product = product;
+    }
+
+    public Image() {
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public long getId() {
         return id;
@@ -52,11 +71,4 @@ public class Image{
         this.path = path;
     }
 
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
 }

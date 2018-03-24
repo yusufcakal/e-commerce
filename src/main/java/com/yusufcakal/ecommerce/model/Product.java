@@ -1,6 +1,14 @@
 package com.yusufcakal.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "product", schema = "public")
@@ -20,21 +28,36 @@ public class Product{
     @Column(name = "stock")
     private int stock;
 
-    @Column(name = "category_id")
-    private long category_id;
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    public Product(String name, double price, int stock) {
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<Image> imageList = new HashSet<>();
+
+    public Product(String name, double price, int stock, Category category) {
         this.name = name;
         this.price = price;
         this.stock = stock;
+        this.category = category;
     }
 
-    public long getCategory_id() {
-        return category_id;
+    public Set<Image> getImageList() {
+        return imageList;
     }
 
-    public void setCategory_id(long category_id) {
-        this.category_id = category_id;
+    public void setImageList(Set<Image> imageList) {
+        this.imageList = imageList;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Product() {}
@@ -71,13 +94,4 @@ public class Product{
         this.stock = stock;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", stock=" + stock +
-                '}';
-    }
 }

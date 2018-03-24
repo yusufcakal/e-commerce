@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -62,34 +61,12 @@ public class ProductController {
      * @throws EntityNotFoundException
      */
     @RequestMapping(method = RequestMethod.GET, value = "/category/{category_id}")
-    public ResponseEntity<?> getProductsOfCategory(@PathVariable int category_id) throws EntityNotFoundException {
-        List<Product> productList = (List<Product>) productRepository.findAll();
-        List<Product> productsOfCategoryList = new ArrayList<>();
-        for (Product product : productList) {
-            if (product.getCategory_id() == category_id){
-                productsOfCategoryList.add(product);
-            }
-        }
-        return new ResponseEntity<>(productsOfCategoryList, HttpStatus.OK);
+    public ResponseEntity<?> getProductsOfCategory(@PathVariable long category_id) throws EntityNotFoundException {
+        List<Product> productList = productRepository.findByCategoryId(category_id);
+        return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
-    /**
-     *
-     * @param id - product id
-     * @return - get all images of product
-     * @throws EntityNotFoundException
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/images/{id}")
-    public ResponseEntity<?> getImagesOfProduct(@PathVariable int id) throws EntityNotFoundException {
-        List<Image> imageList = (List<Image>) imageRepository.findAll();
-        List<Image> imagesOfProductList = new ArrayList<>();
-        for (int i=0; i<imageList.size(); i++){
-            if (imageList.get(i).getProduct_id() == id){
-                imagesOfProductList.add(imageList.get(i));
-            }
-        }
-        return new ResponseEntity<>(imagesOfProductList, HttpStatus.OK);
-    }
+
 
     /**
      *
@@ -105,7 +82,6 @@ public class ProductController {
 
         ObjectMapper mapper = new ObjectMapper();
         Product product = mapper.readValue(strPojo, Product.class);
-        System.out.println(strPojo);
         productRepository.save(product);
 
         for (MultipartFile file : files) {
@@ -114,13 +90,14 @@ public class ProductController {
             byte[] bytes = file.getBytes();
             Files.write(path, bytes);
 
-            Image image = new Image(file.getOriginalFilename(), path.toString(), (int) product.getId());
+            Image image = new Image(file.getOriginalFilename(), path.toString(), product);
             imageRepository.save(image);
         }
 
         List<Product> productList = (List<Product>) productRepository.findAll();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+
 
     /**
      * @param product - passing editable product object
