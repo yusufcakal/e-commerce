@@ -17,12 +17,21 @@ public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    /**
+     * @return - get all categories
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.GET, value = "")
     public ResponseEntity<List<Category>> getCategories() throws EntityNotFoundException {
         List<Category> categoryList = (List<Category>) categoryRepository.findAll();
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
+    /**
+     * @param id - category id
+     * @return - get single category
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<HttpStatus> getCategory(@PathVariable int id) throws EntityNotFoundException {
         Category category = categoryRepository.findOne((long) id);
@@ -33,6 +42,11 @@ public class CategoryController {
         }
     }
 
+    /**
+     * @param category - category object
+     * @return - HTTP OK - Register Success
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public ResponseEntity<List<Category>> addCategory(@RequestBody Category category) throws EntityNotFoundException {
         categoryRepository.save(category);
@@ -40,6 +54,11 @@ public class CategoryController {
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
+    /**
+     * @param id - category id
+     * @return - deleted category object and get all categories
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
     public ResponseEntity<List<Category>> deleteCategory(@PathVariable int id) throws EntityNotFoundException {
         categoryRepository.delete((long) id);

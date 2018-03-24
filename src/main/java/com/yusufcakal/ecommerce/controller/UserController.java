@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
@@ -23,6 +24,11 @@ public class UserController {
     @Autowired
     SmtpMailSender smtpMailSender;
 
+    /**
+     * @param user - user object
+     * @return - HTTP CREATED OR CONFLICT - if http conflict user already exits, else user created and mail send to user's mail for verify address
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/register")
     public ResponseEntity<?> register(@RequestBody User user) throws EntityNotFoundException {
         boolean userFlag = false;
@@ -56,6 +62,11 @@ public class UserController {
 
     }
 
+    /**
+     * @param token - user token for mail address verify view in the url
+     * @return - User mail address verified.
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/verify/{token}")
     public ResponseEntity<String> verify(@PathVariable int token) throws EntityNotFoundException {
 
@@ -69,9 +80,14 @@ public class UserController {
             }
         }
 
-        return new ResponseEntity<>("Kayıt Başarılı", HttpStatus.OK);
+        return new ResponseEntity<>("Register Success !", HttpStatus.OK);
     }
 
+    /**
+     * @param user - login operation for user object
+     * @return - HTTP and token value as enum type.
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public ResponseEntity<Integer> login(@RequestBody User user) throws EntityNotFoundException {
         List<User> userList = (List<User>) userRepository.findAll();

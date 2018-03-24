@@ -31,12 +31,21 @@ public class ProductController {
 
     private static final String UPLOADED_FOLDER = "C:\\Users\\Yusuf\\Desktop\\Java Pojects\\ecommerce\\src\\main\\resources\\upload\\";
 
+    /**
+     * @return return all registered products in the system.
+     */
     @RequestMapping(method = RequestMethod.GET, value = "")
     public ResponseEntity<List<Product>> getProducts(){
         List<Product> productList = (List<Product>) productRepository.findAll();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param id - user id
+     * @return - user entity
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<?> getProduct(@PathVariable int id) throws EntityNotFoundException {
         Product product = productRepository.findOne((long) id);
@@ -47,6 +56,12 @@ public class ProductController {
         }
     }
 
+    /**
+     *
+     * @param category_id - get products category id
+     * @return - get all products in the category
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/category/{category_id}")
     public ResponseEntity<?> getProductsOfCategory(@PathVariable int category_id) throws EntityNotFoundException {
         List<Product> productList = (List<Product>) productRepository.findAll();
@@ -59,8 +74,14 @@ public class ProductController {
         return new ResponseEntity<>(productsOfCategoryList, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param id - product id
+     * @return - get all images of product
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/images/{id}")
-    public ResponseEntity<?> getImagesOfProduct(@PathVariable int id) throws EntityNotFoundException, IOException {
+    public ResponseEntity<?> getImagesOfProduct(@PathVariable int id) throws EntityNotFoundException {
         List<Image> imageList = (List<Image>) imageRepository.findAll();
         List<Image> imagesOfProductList = new ArrayList<>();
         for (int i=0; i<imageList.size(); i++){
@@ -71,6 +92,14 @@ public class ProductController {
         return new ResponseEntity<>(imagesOfProductList, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param files - product's image or images type multipart
+     * @param strPojo - standart product json request
+     * @return - get all products in the system
+     * @throws EntityNotFoundException
+     * @throws IOException
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public ResponseEntity<List<Product>> addProduct(@RequestParam(value = "file") MultipartFile[] files,
                                                      @RequestParam(value = "product") String strPojo) throws EntityNotFoundException, IOException {
@@ -94,6 +123,12 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    /**
+     * @param product - passing editable product object
+     * @param id - the id of edit product object
+     * @return - edited product object
+     * @throws EntityNotFoundException
+     */
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     public ResponseEntity<List<Product>> updateProduct(@RequestBody Product product, @PathVariable long id) throws EntityNotFoundException {
         Product product1 = productRepository.findOne(id);
@@ -106,6 +141,11 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    /**
+     * @param id -  product id
+     * @return - HTTP OK - deleted product object
+     * @throws EntityNotFoundException - does not exits product object
+     */
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<HttpStatus> deleteProduct(@PathVariable int id) throws EntityNotFoundException {
         productRepository.delete((long) id);
