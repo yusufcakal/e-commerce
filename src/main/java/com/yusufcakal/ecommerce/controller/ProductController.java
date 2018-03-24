@@ -41,7 +41,6 @@ public class ProductController {
     }
 
     /**
-     *
      * @param id - user id
      * @return - user entity
      * @throws EntityNotFoundException
@@ -108,8 +107,6 @@ public class ProductController {
         Product product = mapper.readValue(strPojo, Product.class);
         System.out.println(strPojo);
         productRepository.save(product);
-
-        int size = files.length;
 
         for (MultipartFile file : files) {
 

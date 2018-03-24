@@ -1,10 +1,6 @@
 package com.yusufcakal.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "product", schema = "public")
