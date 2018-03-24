@@ -1,23 +1,16 @@
 package com.yusufcakal.ecommerce.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yusufcakal.ecommerce.model.Category;
 import com.yusufcakal.ecommerce.model.Image;
 import com.yusufcakal.ecommerce.model.Product;
 import com.yusufcakal.ecommerce.repository.ImageRepository;
 import com.yusufcakal.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.activation.FileTypeMap;
 import javax.persistence.EntityNotFoundException;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +18,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -58,7 +52,7 @@ public class ProductController {
         List<Product> productList = (List<Product>) productRepository.findAll();
         List<Product> productsOfCategoryList = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getCategory().getId() == category_id){
+            if (product.getCategory_id() == category_id){
                 productsOfCategoryList.add(product);
             }
         }
@@ -83,6 +77,7 @@ public class ProductController {
 
         ObjectMapper mapper = new ObjectMapper();
         Product product = mapper.readValue(strPojo, Product.class);
+        System.out.println(strPojo);
         productRepository.save(product);
 
         for (MultipartFile file : files) {

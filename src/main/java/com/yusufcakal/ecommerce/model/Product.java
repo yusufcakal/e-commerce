@@ -24,10 +24,8 @@ public class Product{
     @Column(name = "stock")
     private int stock;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Column(name = "category_id")
+    private long category_id;
 
     public Product(String name, double price, int stock) {
         this.name = name;
@@ -35,12 +33,12 @@ public class Product{
         this.stock = stock;
     }
 
-    public Category getCategory() {
-        return category;
+    public long getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory_id(long category_id) {
+        this.category_id = category_id;
     }
 
     public Product() {}
@@ -84,7 +82,6 @@ public class Product{
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
-                ", category=" + category +
                 '}';
     }
 }
