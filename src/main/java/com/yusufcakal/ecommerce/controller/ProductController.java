@@ -123,9 +123,10 @@ public class ProductController {
      * @throws EntityNotFoundException - does not exits product object
      */
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<HttpStatus> deleteProduct(@PathVariable int id) throws EntityNotFoundException {
+    public ResponseEntity<?> deleteProduct(@PathVariable int id) throws EntityNotFoundException {
         productRepository.delete((long) id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<Product> productList = (List<Product>) productRepository.findAll();
+        return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
 }
