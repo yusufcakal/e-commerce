@@ -138,7 +138,7 @@ It's open source project providers fundamental product and user management.
     ```
     - ###### response
     ```
-    200 (Http Ok) product or productlist
+    200 (Http Ok) product, category and productlist
     ```
  - ##### Images
      ```
