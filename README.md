@@ -15,7 +15,7 @@ It's open source project providers fundamental product and user management.
 - [Services](https://github.com/yusufcakal/e-commerce#services)
 - [Frontend](https://github.com/yusufcakal/e-commerce-front)
 - [License](https://github.com/yusufcakal/e-commerce#license)
-- [Thanks](https://github.com/yusufcakal/e-commerce#thanks)
+- [Acknowledgment](https://github.com/yusufcakal/e-commerce#thanks)
 
 ### Database Tables
 
@@ -196,7 +196,7 @@ It's open source project providers fundamental product and user management.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-### Thanks
+### Acknowledgment
 
 * [Spring](https://spring.io/)
 * [Postgresql](https://www.postgresql.org/)
